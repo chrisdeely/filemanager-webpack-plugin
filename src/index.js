@@ -283,7 +283,7 @@ class FileManagerPlugin {
           for (let key in fileOptions) {
             const command = {
               source: this.replaceHash(fileOptions[key].source),
-              destination: fileOptions[key].destination,
+              destination: this.replaceHash(fileOptions[key].destination),
               format: fileOptions[key].format ? fileOptions[key].format : "zip",
               options: fileOptions[key].options ? fileOptions[key].options : { zlib: { level: 9 } },
             };
