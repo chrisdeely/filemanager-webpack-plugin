@@ -6,6 +6,7 @@ const rimraf = require("rimraf");
 const mv = require("mv");
 const makeDir = require("make-dir");
 const archiver = require("archiver");
+const shell = require("shelljs");
 
 class FileManagerPlugin {
   constructor(options) {
@@ -323,6 +324,24 @@ class FileManagerPlugin {
                 }),
             );
           }
+
+          break;
+        case "shell":
+          const command = {
+            command: fileOptions.command,
+            options: fileOptions.options ? fileOptions.options : { async: true },
+          };
+
+          commandOrder.push(
+            () =>
+              new Promise((resolve, reject) => {
+                console.log(`Executing shell command: ${command.command}`);
+                shell.exec(command.command, command.options, (code, stdout, stderr) => {
+                  if (code !== 0) return reject(new Error(stderr));
+                  return resolve(stdout);
+                });
+              }),
+          );
 
           break;
 
