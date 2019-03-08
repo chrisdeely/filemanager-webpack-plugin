@@ -26,7 +26,8 @@ const plainConfig = {
            { source: "./dist/**/*.{html,js}", destination: "./testing/testing4" },
            { source: "./dist/{fake,bundle}.js", destination: "./testing/testing5" },
            { source: "./dist/bundle.js", destination: "./testing/newfile.js" },
-           { source: "./dist/bundle.js", destination: "./testing/testing6" }
+           { source: "./dist/bundle.js", destination: "./testing/testing6" },
+           { source: "./dist/doesnotexit.js", destination: "./testing/wontexist.js" }
         ],
         archive: [
            { source: "./dist", destination: "./testing/test1.zip" },
@@ -43,7 +44,11 @@ const plainConfig = {
                 level: 1
                }
              }
-           }
+           },
+           { source: "./testing/", destination: "./testing/test7.zip" }
+		],
+        mkdir: [
+          './testing/testdir'
         ]
       }
       /*
