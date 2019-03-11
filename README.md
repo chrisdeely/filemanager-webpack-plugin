@@ -118,6 +118,8 @@ new FileManagerPlugin(fileEvents, options)
 #### File Events
 * `onStart`: Commands to execute before Webpack begins the bundling process
 * `onEnd`: Commands to execute after Webpack has finished the bundling process
+* `onAllEnd`: Commands to execute after Webpack has finished the bundling process for _all_ configurations. 
+This is useful when running Webpack with an array of configurations. 
 
 #### File Actions
 

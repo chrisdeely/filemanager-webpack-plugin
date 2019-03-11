@@ -12,7 +12,7 @@ function shellAction(command, options) {
   return () =>
     new Promise((resolve, reject) => {
       if (verbose) {
-        console.log(`Executing shell command: ${command.command}`);
+        console.log(`  - FileManagerPlugin: Executing shell command: ${command.command}`);
       }
       shell.exec(command.command, command.options, (code, stdout, stderr) => {
         if (code !== 0) return reject(new Error(stderr));

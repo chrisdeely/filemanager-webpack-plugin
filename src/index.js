@@ -11,6 +11,7 @@ class FileManagerPlugin {
       moveWithMkdirp: false,
       onStart: {},
       onEnd: {},
+      onAllEnd: {},
     };
 
     for (const key in defaultOptions) {
@@ -153,9 +154,16 @@ class FileManagerPlugin {
       cb();
     };
 
+    const afterAllComplete = stats => {
+      try {
+        that.checkOptions('onAllEnd');
+      } catch (error) {}
+    };
+
     if (compiler.hooks) {
       compiler.hooks.compilation.tap('compilation', comp);
       compiler.hooks.afterEmit.tapAsync('afterEmit', afterEmit);
+      compiler.hooks.done.tap('afterAllComplete', afterAllComplete);
     } else {
       compiler.plugin('compilation', comp);
       compiler.plugin('after-emit', afterEmit);

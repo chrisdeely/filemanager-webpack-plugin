@@ -27,6 +27,14 @@ function archiveAction(command, options) {
 
       const isGlob = matches !== null;
 
+      if (verbose) {
+        console.log(
+          `  - FileManagerPlugin: Generating archive for { source: ${command.source}, destination: ${
+            command.destination
+          } }`,
+        );
+      }
+
       fs.lstat(command.source, (sErr, sStats) => {
         const output = fs.createWriteStream(command.destination);
         const archive = archiver(command.format, command.options);
