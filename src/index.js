@@ -1,5 +1,4 @@
-import { copyAction, moveAction, mkdirAction, archiveAction, deleteAction } from './actions';
-const shell = require("shelljs");
+import { copyAction, moveAction, mkdirAction, archiveAction, deleteAction, shellAction } from './actions';
 
 class FileManagerPlugin {
   constructor(options) {
@@ -111,25 +110,16 @@ class FileManagerPlugin {
             this.processAction(archiveAction, actionParams, commandOrder);
 
             break;
-          break;
-        case "shell":
-          const command = {
-            command: fileOptions.command,
-            options: fileOptions.options ? fileOptions.options : { async: true },
-          };
 
-          commandOrder.push(
-            () =>
-              new Promise((resolve, reject) => {
-                console.log(`Executing shell command: ${command.command}`);
-                shell.exec(command.command, command.options, (code, stdout, stderr) => {
-                  if (code !== 0) return reject(new Error(stderr));
-                  return resolve(stdout);
-                });
-              }),
-          );
+          case 'shell':
+            actionParams = {
+              command: actionItem.command,
+              options: actionItem.options ? actionItem.options : { async: true },
+            };
 
-          break;
+            this.processAction(shellAction, actionParams, commandOrder);
+
+            break;
 
           default:
             break;
