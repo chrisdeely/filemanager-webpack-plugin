@@ -46,13 +46,13 @@
     "rollup-plugin-commonjs": "^9.1.4",
     "rollup-plugin-includepaths": "^0.2.3",
     "rollup-plugin-node-resolve": "^3.0.0",
-    "webpack": "^4.2.0",
+    "webpack": "^4.41.6",
     "webpack-cli": "2.0.12",
-    "webpack-dev-server": "^3.1.1"
+    "webpack-dev-server": "^3.10.3"
   },
   "dependencies": {
     "archiver": "^3.0.0",
-    "cpx": "^1.5.0",
+    "cpx": "nandenjin/cpx",
     "fs-extra": "^7.0.0",
     "make-dir": "^1.1.0",
     "mv": "^2.1.1",
